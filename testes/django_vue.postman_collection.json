@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "0dbd8349-54ec-4746-8acb-f93aa801d65c",
+		"name": "django_vue",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24314401"
+	},
+	"item": [
+		{
+			"name": "pesquisa anador",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"palavrasChave\":\"anador\",\n    \"quantidade\":100\n}"
+				},
+				"url": {
+					"raw": "localhost:8000/pesquisa/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"pesquisa",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

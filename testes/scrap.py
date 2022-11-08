@@ -1,6 +1,4 @@
-import sys
-sys.path.insert(1, 'scrp_drogasil/')
-from scrp_drogasil.scrap import pesquisa
+from desafio_vue_django.scrp_drogasil.scrap import pesquisa
 
 
 def main():
