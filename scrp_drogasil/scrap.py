@@ -51,16 +51,16 @@ class pesquisa:
         retorno=produtos_processados
         return retorno
     
-        @staticmethod
-        def query_quantidade(palavrasChave:str,quantidade:int=24):
-            retorno=[]
-            for i in range(0,quantidade,24):
-                query_=pesquisa.query(palavrasChave=palavrasChave,pagina=round(i/24,0))
-                if query_==[]:
-                    return retorno
-                else:
-                    retorno=[*retorno,*query_]
-                if len(retorno)>=quantidade:
-                    return retorno[:quantidade-1]
-            return retorno
+    @staticmethod
+    def query_quantidade(palavrasChave:str,quantidade:int=24):
+        retorno=[]
+        for i in range(0,quantidade,24):
+            query_=pesquisa.query(palavrasChave=palavrasChave,pagina=round(i/24,0))
+            if query_==[]:
+                return retorno
+            else:
+                retorno=[*retorno,*query_]
+            if len(retorno)>=quantidade:
+                return retorno[:quantidade]
+        return retorno
             
