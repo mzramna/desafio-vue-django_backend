@@ -5,10 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "teste",
+      "name": "teste scrap",
       "type": "python",
       "request": "launch",
-      "program": "mainTests.py",
+      "program": "backend/mainTests.py",
       "console": "integratedTerminal",
       "justMyCode": true
     },
@@ -16,10 +16,29 @@
       "name": "Python: Django",
       "type": "python",
       "request": "launch",
-      "program": "${workspaceFolder}/desafio_vue_django/manage.py",
+      "program": "${workspaceFolder}/backend/desafio_vue_django/manage.py",
       "args": ["runserver"],
       "django": true,
       "justMyCode": true
+    },
+    {
+      "command": "cd frontend && npm run serve && cd ..",
+      "name": "Run npm start",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "name": "firefox",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}/",
+      "pathMappings": [
+        {
+          "url": "webpack:/",
+          "path": "${workspaceFolder}"
+        }
+      ]
     }
   ]
 }
