@@ -37,7 +37,10 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable */
+
 import { Options, Vue } from "vue-class-component";
+import axios from "axios";
 import ElementoPesquisado from "./components/elementoPesquisado.vue";
 import { Produto } from "./produto";
 
@@ -57,115 +60,27 @@ export default class App extends Vue {
 
   quantidadeProdutos = 24;
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     this.exibir = false;
     this.emPesquisa = true;
-    setTimeout(() => {
-      this.produtos = this.pesquisar(this.produtoPesquisado, this.quantidadeProdutos);
-      this.emPesquisa = false;
-      this.exibir = true;
-      console.log(this.produtos);
-    }, 500);
+    this.produtos = await this.pesquisar(this.produtoPesquisado, this.quantidadeProdutos);
+    this.emPesquisa = false;
+    this.exibir = true;
+    console.log(this.produtos);
   }
 
-  pesquisar(produtoPesquisado: string, quantidadeProdutos: number): Produto[] {
+  async pesquisar(produtoPesquisado: string, quantidadeProdutos: number): Promise<Produto[]> {
     console.log(produtoPesquisado, quantidadeProdutos);
     console.log(this.exibir);
-    return [
-      {
-        imagem: "teste",
-        nome: "teste",
-        categoria: "teste",
-        dosagem: 0,
-        quantidade: 0,
-        link: "teste",
-        marca: "teste",
-        preco: 0,
-        desconto: 0,
-        descontoPctg: 0,
-      },
-      {
-        imagem: "teste",
-        nome: "teste",
-        categoria: "teste",
-        dosagem: 0,
-        quantidade: 0,
-        link: "teste",
-        marca: "teste",
-        preco: 0,
-        desconto: 0,
-        descontoPctg: 0,
-      },
-      {
-        imagem: "teste",
-        nome: "teste",
-        categoria: "teste",
-        dosagem: 0,
-        quantidade: 0,
-        link: "teste",
-        marca: "teste",
-        preco: 0,
-        desconto: 0,
-        descontoPctg: 0,
-      },
-    ];
+    const pesquisa = { palavrasChave: produtoPesquisado, quantidade: quantidadeProdutos };
+    const api = axios.create({
+      baseURL: "http://localhost:8000/",
+    });
+    const { data, status } = await api.post<Produto[], any>("pesquisa/", pesquisa);
+    console.log(data);
+    console.log(status);
+    return data;
   }
-  // onSubmit(): void {
-  //   this.exibir = false;
-  //   this.emPesquisa = true;
-  //   this.produtos = this.pesquisar(this.produtoPesquisado, this.quantidadeProdutos);
-  //   this.emPesquisa = false;
-  //   this.exibir = true;
-  //   console.log(this.produtos);
-  // }
-
-  // async pesquisar(produtoPesquisado: string, quantidadeProdutos: number): Promise<Produto[]> {
-  //   let retorno = [] as Produto[];
-  //   const tmp = setTimeout(async () => {
-  //     console.log(produtoPesquisado, quantidadeProdutos);
-  //     console.log(this.exibir);
-  //     retorno = [
-  //       {
-  //         imagem: "teste",
-  //         nome: "teste",
-  //         categoria: "teste",
-  //         dosagem: 0,
-  //         quantidade: 0,
-  //         link: "teste",
-  //         marca: "teste",
-  //         preco: 0,
-  //         desconto: 0,
-  //         descontoPctg: 0,
-  //       },
-  //       {
-  //         imagem: "teste",
-  //         nome: "teste",
-  //         categoria: "teste",
-  //         dosagem: 0,
-  //         quantidade: 0,
-  //         link: "teste",
-  //         marca: "teste",
-  //         preco: 0,
-  //         desconto: 0,
-  //         descontoPctg: 0,
-  //       },
-  //       {
-  //         imagem: "teste",
-  //         nome: "teste",
-  //         categoria: "teste",
-  //         dosagem: 0,
-  //         quantidade: 0,
-  //         link: "teste",
-  //         marca: "teste",
-  //         preco: 0,
-  //         desconto: 0,
-  //         descontoPctg: 0,
-  //       },
-  //     ];
-  //   }, 500);
-  //   console.log(tmp);
-  //   return retorno;
-  // }
 }
 </script>
 
@@ -200,7 +115,7 @@ export default class App extends Vue {
 $roboto-font-path: "~materialize-css/fonts/roboto/";
 @import "~materialize-css/sass/components/roboto";
 @import "~materialize-css/sass/components/icons-material-design";
- // icons are no long included in materializeCSS
+// icons are no long included in materializeCSS
 @import "~materialize-css/sass/components/buttons";
 @import "~materialize-css/sass/components/grid";
 @import "~materialize-css/sass/components/navbar";

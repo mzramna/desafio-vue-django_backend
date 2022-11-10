@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
@@ -14,6 +13,11 @@ def pesquisaAPI(request):
         pesquisa_serializer=PesquisaSerializer(data=produtos)
         if pesquisa_serializer.is_valid():
             if 'quantidade' in  produtos.keys():
-                return JsonResponse(pesquisa.query_quantidade(palavrasChave=produtos["palavrasChave"],quantidade=produtos['quantidade']),safe=False)
+                retorno= JsonResponse(pesquisa.query_quantidade(palavrasChave=produtos["palavrasChave"],quantidade=produtos['quantidade']),safe=False)
             else:
-                return JsonResponse(pesquisa.query_quantidade(palavrasChave=produtos["palavrasChave"]),safe=False)
+                retorno= JsonResponse(pesquisa.query_quantidade(palavrasChave=produtos["palavrasChave"]),safe=False)
+            retorno["Access-Control-Allow-Origin"] = "*"
+            retorno["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+            retorno["Access-Control-Max-Age"] = "1000"
+            retorno["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+            return retorno
