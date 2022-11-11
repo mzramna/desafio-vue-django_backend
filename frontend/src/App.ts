@@ -31,7 +31,7 @@ export default class App extends Vue {
   async pesquisar(): Promise<Produto[]> {
     const pesquisa = { palavrasChave: this.produtoPesquisado, quantidade: this.quantidadeProdutos };
     const api = axios.create({
-      baseURL: "http://localhost:8000/",
+      baseURL: "http://backend:8000/",
     });
     const { data, status } = await api.post<Produto[], any>("pesquisa/", pesquisa);
     return data;
