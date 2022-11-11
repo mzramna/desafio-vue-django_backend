@@ -5,10 +5,12 @@ services:
       context: frontend
       dockerfile: ./Dockerfile
     ports:
-     - 8080:8080
+      - 8080:8080
 
   backend:
     image: mzramna/django_vue_backend
     build:
       context: backend
       dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
