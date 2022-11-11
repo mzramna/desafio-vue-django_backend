@@ -1,0 +1,81 @@
+<div class="row">
+  <form @submit.prevent="onSubmit">
+    <div class="row">
+      <div class="input-field col s6">
+        <label for="produtoPesquisado">Produto</label>
+        <input
+          v-model="produtoPesquisado"
+          type="text"
+          aria-label="produtoPesquisado"
+          id="produtoPesquisado"
+        />
+      </div>
+      <div class="input-field col s6">
+        <input
+          v-model="quantidadeProdutos"
+          placeholder="24"
+          type="number"
+          aria-label="quantidadeProdutos"
+          id="quantidadeProdutos"
+        />
+        <label for="quantidadeProdutos">Quantidade de produtos</label>
+        <span class="helper-text" data-error="wrong" data-success="right"
+          >Total de produtos a serem exibidos</span
+        >
+      </div>
+    </div>
+
+    <button
+      class="btn waves-effect waves-light"
+      type="submit"
+      aria-label="Submit"
+    >
+      pesquisar
+      <i class="material-icons right">search</i>
+    </button>
+  </form>
+</div>
+<div v-if="emPesquisa" class="container row center">
+  <div>pesquisando....</div>
+  <div class="preloader-wrapper big active">
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div>
+      <div class="gap-patch">
+        <div class="circle"></div>
+      </div>
+      <div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="table-wrapper">
+  <div id="table-scroll">
+    <table v-if="exibir" class="striped">
+      <thead>
+        <tr>
+          <th><span class="text">imagem</span></th>
+          <th><span class="text">nome</span></th>
+          <th><span class="text">categoria</span></th>
+          <th><span class="text">dosagem</span></th>
+          <th><span class="text">quantidade</span></th>
+          <!-- <th><span class="text">link</span></th> -->
+          <th><span class="text">marca</span></th>
+          <th><span class="text">preco</span></th>
+          <th><span class="text">desconto</span></th>
+          <th><span class="text">descontoPctg</span></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <elementoPesquisado
+          v-for="produto in produtos"
+          :key="produto.nome"
+          :produto="produto"
+        />
+      </tbody>
+    </table>
+  </div>
+</div>

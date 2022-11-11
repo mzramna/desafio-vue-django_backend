@@ -1,11 +1,12 @@
 <template>
   <tr>
-    <td><img :src="produto.imagem" :alt="produto.nome" /></td>
-    <td>{{ produto.nome }}</td>
+    <td><img :src="produto.imagem" :alt="produto.nome" height="50" width:auto /></td>
+    <td>
+      <a :href="produto.link">{{ produto.nome }}</a>
+    </td>
     <td>{{ produto.categoria }}</td>
     <td>{{ produto.dosagem }}</td>
     <td>{{ produto.quantidade }}</td>
-    <td>{{ produto.link }}</td>
     <td>{{ produto.marca }}</td>
     <td>{{ produto.preco }}</td>
     <td>{{ produto.desconto }}</td>

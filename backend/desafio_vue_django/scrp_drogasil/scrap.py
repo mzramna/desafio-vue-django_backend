@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-import requests,re
 from requests_html import HTMLSession
 import json
 
@@ -41,7 +40,7 @@ class pesquisa:
             produto_processado['categoria']=produto['subcategory']
             produto_processado['dosagem']=produto['dosage']
             produto_processado['quantidade']=produto['qty']
-            produto_processado['link']=produto['urlKey']
+            produto_processado['link']="https://"+str(produto['urlKey'][2:])
             produto_processado['marca']=produto['brand']
             produto_processado['preco']=produto['valueTo']
             produto_processado['desconto']=round(produto['valueFrom']-produto['valueTo'],2)
