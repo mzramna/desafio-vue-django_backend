@@ -47,6 +47,6 @@
     "url-loader": "^4.1.1",
     "vue-materialize": "^1.0.0",
     "vue-style-loader": "^4.1.3",
-    "webpack": "^5.75.0"
+    "webpack": "^5.76.0"
   }
 }
